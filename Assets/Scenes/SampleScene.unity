@@ -683,6 +683,7 @@ MonoBehaviour:
   _jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _speed: 5
   _distance: 5
+  IsGrounded: 0
 --- !u!1 &570560177
 GameObject:
   m_ObjectHideFlags: 0
@@ -1023,6 +1024,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1038499989}
+  - component: {fileID: 1038499990}
   m_Layer: 0
   m_Name: PlayerVisuals
   m_TagString: Untagged
@@ -1046,6 +1048,20 @@ Transform:
   - {fileID: 73519743}
   m_Father: {fileID: 559087427}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1038499990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038499988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae38adcd77ce0e41bc4b887df5df84d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerAnimator: {fileID: 73519745}
+  _playerController: {fileID: 0}
 --- !u!1 &1122085403
 GameObject:
   m_ObjectHideFlags: 0

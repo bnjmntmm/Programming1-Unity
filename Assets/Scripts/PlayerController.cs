@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [Header("Orbit Settings")] [SerializeField]
     private float _distance = 5f;
 
+    public bool IsGrounded;
+
     private void OnEnable()
     {
         _jumpAction.action.performed += OnJumped;

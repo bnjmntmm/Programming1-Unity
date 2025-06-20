@@ -2,18 +2,21 @@ using System;
 using System.Collections;
 using Player;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerVisuals : MonoBehaviour
 {
     
-    [SerializeField]
-    private Animator _playerAnimator;
-    
-    [SerializeField]
-    private PlayerController _playerController;
-
+    [SerializeField] private Animator _playerAnimator;
+    [SerializeField] private PlayerController _playerController;
+    [SerializeField] private InputActionReference _jumpAction;
     private PlayerAnimationStates.States _currentAnimationState = PlayerAnimationStates.States.Start;
-    
+
+
+    private void OnEnable()
+    {
+        _jumpAction.action.performed += OnJumpAction;
+    }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,11 +25,28 @@ public class PlayerVisuals : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if(!_playerController.Controller.isGrounded && _currentAnimationState != PlayerAnimationStates.States.Fall)
+        {
+            ChangeAnimation(PlayerAnimationStates.States.Fall);
+        } else if(_playerController.Controller.isGrounded && _currentAnimationState == PlayerAnimationStates.States.Fall)
+        {
+            ChangeAnimation(PlayerAnimationStates.States.Land);
+        } 
     }
+    
+
+    private void OnJumpAction(InputAction.CallbackContext context)
+    {
+        if (context.performed && _currentAnimationState != PlayerAnimationStates.States.Jump)
+        {
+            Debug.Log("Jump Anim");
+            ChangeAnimation(PlayerAnimationStates.States.Jump);
+        }
+    }
+    
+    
 
     private void CheckAnimation()
     {
@@ -37,7 +57,7 @@ public class PlayerVisuals : MonoBehaviour
 
         if (_currentAnimationState == PlayerAnimationStates.States.Fall)
         {
-            if (_playerController.IsGrounded)
+            if (_playerController.Controller.isGrounded)
             {
                 ChangeAnimation(PlayerAnimationStates.States.Land);
             }
@@ -75,8 +95,6 @@ public class PlayerVisuals : MonoBehaviour
                     CheckAnimation();
                 }
                 
-                
-                Debug.Log(_currentAnimationState);
                 _playerAnimator.CrossFade(PlayerAnimationStates.ConvertToString(_currentAnimationState), crossfade);
             }
         }

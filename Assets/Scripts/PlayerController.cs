@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _isGrounded;
     [SerializeField] private Vector3 _frameMovement;
 
+    public CharacterController Controller => _controller;
+    
     [Header("Orbit Settings")] [SerializeField]
     private float _distance = 5f;
 
@@ -29,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private bool _isJumping = false;
     private bool _isDashing = false;
 
+    public float YVelocity => _yVelocity;
+    
     private void Awake()
     {
         if (Instance && Instance != this)
@@ -80,6 +84,7 @@ public class PlayerController : MonoBehaviour
 
         if (_controller.isGrounded == false)
         {
+            
             _yVelocity += Physics.gravity.y * _gravityMultiplier * Time.deltaTime;
             _isGrounded = false;
         }

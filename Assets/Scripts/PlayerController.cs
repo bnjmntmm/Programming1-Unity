@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (_isJumping == false)
         {
-            _yVelocity = -0.001f;
+            _yVelocity = -0.01f;
         }
 
         if (moveValue != Vector2.zero && !_isDashing)

@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 994449ee3687e5e40afa1bf8b955dbc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animation: 0
+  animation: 1
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0

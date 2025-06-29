@@ -30,8 +30,8 @@ public class PlayerController : MonoBehaviour
     private float _yVelocity = 0f;
     private bool _isJumping = false;
     private bool _isDashing = false;
-
-    public float YVelocity => _yVelocity;
+    public bool IsGrounded => _isGrounded;
+    public Vector3 FrameMovement => _frameMovement;
     
     private void Awake()
     {

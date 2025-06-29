@@ -27,13 +27,14 @@ public class PlayerVisuals : MonoBehaviour
 
     void Update()
     {
-        if(!_playerController.Controller.isGrounded && _currentAnimationState != PlayerAnimationStates.States.Fall)
-        {
-            ChangeAnimation(PlayerAnimationStates.States.Fall);
-        } else if(_playerController.Controller.isGrounded && _currentAnimationState == PlayerAnimationStates.States.Fall)
-        {
-            ChangeAnimation(PlayerAnimationStates.States.Land);
-        } 
+        // if(!_playerController.Controller.isGrounded && _currentAnimationState != PlayerAnimationStates.States.Fall)
+        // {
+        //     ChangeAnimation(PlayerAnimationStates.States.Fall);
+        // } else if(_playerController.Controller.isGrounded && _currentAnimationState == PlayerAnimationStates.States.Fall)
+        // {
+        //     ChangeAnimation(PlayerAnimationStates.States.Land);
+        // } 
+        CheckAnimation();
     }
     
 
@@ -41,7 +42,7 @@ public class PlayerVisuals : MonoBehaviour
     {
         if (context.performed && _currentAnimationState != PlayerAnimationStates.States.Jump)
         {
-            Debug.Log("Jump Anim");
+           
             ChangeAnimation(PlayerAnimationStates.States.Jump);
         }
     }
@@ -61,6 +62,8 @@ public class PlayerVisuals : MonoBehaviour
             {
                 ChangeAnimation(PlayerAnimationStates.States.Land);
             }
+
+            return;
         }
 
 

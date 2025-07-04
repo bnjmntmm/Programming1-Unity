@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _dashingTime = 1f;
     [SerializeField] private bool _isGrounded;
     [SerializeField] private Vector3 _frameMovement;
+    [SerializeField] private ParticleSystem _dashParticles;
 
     public CharacterController Controller => _controller;
     
@@ -51,6 +52,8 @@ public class PlayerController : MonoBehaviour
         if (!context.performed || _isDashing) return;
         Debug.Log("Dash");
         _isDashing = true;
+        _dashParticles.transform.rotation = _isMovingRight ?  Quaternion.Euler(0f, -90f, 0f) : _dashParticles.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+        _dashParticles.Play();
         StartCoroutine(DashCoroutine());
     }
 

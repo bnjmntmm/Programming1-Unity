@@ -59,6 +59,11 @@ public class PlayerVisuals : MonoBehaviour
             ChangeAnimation(PlayerAnimationStates.States.Jump);
         }
     }
+
+    private void OnWalkEnded(InputAction.CallbackContext context)
+    {
+        Debug.Log("OnWalkEnded");
+    }
     
 
     private void CheckAnimation()

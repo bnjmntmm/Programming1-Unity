@@ -24,12 +24,10 @@ public class PlayerController : MonoBehaviour
     
     [Header("Orbit Settings")] [SerializeField]
     private float _distance = 5f;
-
-    private float _dashingTimer = 0f;
-    private float _xVelocity = 0f;
     private float _yVelocity = 0f;
     private bool _isJumping = false;
     private bool _isDashing = false;
+    private bool _isMovingRight = false;
     public bool IsGrounded => _isGrounded;
     public Vector3 FrameMovement => _frameMovement;
     
@@ -59,7 +57,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator DashCoroutine()
     {
         var startTime = Time.time;
-        var direction = _controller.velocity.x > 0 ? Vector3.right : Vector3.left;
+        var direction = _isMovingRight ? Vector3.right : Vector3.left;
         while (startTime + _dashingTime > Time.time)
         {
             _controller.Move(direction * (_dashVelocity * Time.deltaTime));
@@ -84,7 +82,6 @@ public class PlayerController : MonoBehaviour
 
         if (_controller.isGrounded == false)
         {
-            
             _yVelocity += Physics.gravity.y * _gravityMultiplier * Time.deltaTime;
             _isGrounded = false;
         }
@@ -96,6 +93,7 @@ public class PlayerController : MonoBehaviour
         if (moveValue != Vector2.zero && !_isDashing)
         {
             var worldMoveDir = transform.right * moveValue.x;
+            _isMovingRight = moveValue.x > 0;
             // transform.position += worldMoveDir * (_speed * Time.deltaTime);
             frameMovement = worldMoveDir * (_speed * Time.deltaTime);
         }

@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     private void OnDashAction(InputAction.CallbackContext context)
     {
         if (!context.performed || _isDashing) return;
-        Debug.Log("Dash");
+        // Debug.Log("Dash");
         _isDashing = true;
         _dashParticles.transform.rotation = _isMovingRight ?  Quaternion.Euler(0f, -90f, 0f) : _dashParticles.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
         _dashParticles.Play();
